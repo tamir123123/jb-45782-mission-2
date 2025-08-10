@@ -6,7 +6,7 @@
             try {
                 const response = await fetch(`https://restcountries.com/v3.1/name/${country}/?fields=name,population,currencies,region`);
                 const data = await response.json();
-                if (data.status === 404) {
+                if (!response.ok) {
                     alert("Country not found");
                     return null;
                 }
