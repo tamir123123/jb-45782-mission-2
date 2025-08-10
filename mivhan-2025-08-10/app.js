@@ -62,7 +62,7 @@
         })();
         let allData = `<h2>total countries found: ${searchResult.length}</h2>
             <h2>total countries population: ${searchResult.reduce((totalPop, country) => totalPop + country.population, 0)}</h2>
-            <h2>average population: ${searchResult.reduce((totalPop, country) => totalPop + country.population, 0) / searchResult.length}</h2>
+            <h2>average population: ${(searchResult.reduce((totalPop, country) => totalPop + country.population, 0) / searchResult.length).toFixed(2)}</h2>
             <table>
             <thead>
                 <tr><th>country name</th><th>number of citizens</th></tr>

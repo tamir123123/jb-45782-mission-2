@@ -1,0 +1,137 @@
+/* Simple CSS for Countries Search */
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f5f5f5;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+/* Form Section */
+form {
+    width: 50%;
+    margin: 0 auto 20px auto;
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+#country {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+#country:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#search {
+    background-color: #007bff;
+    color: white;
+}
+
+#search:hover {
+    background-color: #0056b3;
+}
+
+#all-countries {
+    background-color: #28a745;
+    color: white;
+}
+
+#all-countries:hover {
+    background-color: #1e7e34;
+}
+
+/* Results Section */
+#search-result {
+    margin-top: 20px;
+}
+
+#search-result h2 {
+    background-color: #e9ecef;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+/* Tables */
+table {
+    margin: 0 auto;
+    width: 50%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+}
+
+th {
+    width: 30%;
+    background-color: #f8f9fa;
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #ddd;
+    font-weight: bold;
+}
+
+td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+tbody tr:hover {
+    background-color: #e9ecef;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .search-container {
+        flex-direction: column;
+    }
+    
+    #country, .btn {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    
+    table {
+        font-size: 14px;
+    }
+    
+    th, td {
+        padding: 8px;
+    }
+}
