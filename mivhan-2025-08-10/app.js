@@ -6,9 +6,14 @@
             try {
                 const response = await fetch(`https://restcountries.com/v3.1/name/${country}/?fields=name,population,currencies,region`);
                 const data = await response.json();
+                if (data.status === 404) {
+                    alert("Country not found");
+                    return null;
+                }
                 return data;
             } catch (error) {
-                console.error("Error fetching country data:", error);
+                alert("country not found");
+                return;
             }
         })(country);
         let allData = `<h2>total countries found: ${searchResult.length}</h2>
@@ -28,18 +33,16 @@
                 <tr><th>region</th><th>number of countries</th></tr>
             </thead>
             <tbody>`;
-        const regions = searchResult.reduce((regions, country) => {
+        const regionsMap = {};
+        searchResult.forEach(country => {
             const region = country.region;
-            const existingRegion = regions.find(r => r.region === region);
+            regionsMap[region] = (regionsMap[region] || 0) + 1;
+        });
+        const regions = [];
+        for (const region in regionsMap) {
+            regions.push({ region: region, count: regionsMap[region] });
+        }
 
-            if (existingRegion) {
-                existingRegion.count++;
-            } else {
-                regions.push({ region: region, count: 1 });
-            }
-
-            return regions;
-        }, []);
         regions.forEach((region) => {
             allData += `<tr><td>${region.region}</td><td>${region.count}</td></tr>`;
         });
@@ -65,7 +68,7 @@
                 <tr><th>country name</th><th>number of citizens</th></tr>
             </thead>
             <tbody>`
-            searchResult.forEach(country => {
+        searchResult.forEach(country => {
             allData += `<tr><td>${country.name.common}</td><td>${country.population}</td></tr>`;
         });
         allData += `</tbody></table><br><table>
@@ -73,26 +76,20 @@
                 <tr><th>region</th><th>number of countries</th></tr>
             </thead>
             <tbody>`;
-        const regions = searchResult.reduce((regions, country) => {
+        const regionsMap = {};
+        searchResult.forEach(country => {
             const region = country.region;
-            const existingRegion = regions.find(r => r.region === region);
+            regionsMap[region] = (regionsMap[region] || 0) + 1;
+        });
+        const regions = [];
+        for (const region in regionsMap) {
+            regions.push({ region: region, count: regionsMap[region] });
+        }
 
-            if (existingRegion) {
-                existingRegion.count++;
-            } else {
-                regions.push({ region: region, count: 1 });
-            }
-
-            return regions;
-        }, []);
         regions.forEach((region) => {
             allData += `<tr><td>${region.region}</td><td>${region.count}</td></tr>`;
         });
         allData += `</tbody></table>`;
-            
-        
-
         document.getElementById("search-result").innerHTML = allData;
-    })
-
-})()
+    });
+})();
